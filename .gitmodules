@@ -1,0 +1,6 @@
+[submodule "looplan_api"]
+	path = looplan_api
+	url = https://github.com/looplan_api
+[submodule "looplan_client"]
+	path = looplan_client
+	url = https://github.com/looplan_client
