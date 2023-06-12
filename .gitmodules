@@ -4,3 +4,6 @@
 [submodule "looplan_client"]
 	path = looplan_client
 	url = https://github.com/looplan_client
+[submodule "gear-ui"]
+	path = gear-ui
+	url = ./gear-ui/
