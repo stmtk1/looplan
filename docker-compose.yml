@@ -1,0 +1,37 @@
+services:
+  api_server:
+    build:
+      dockerfile: ./looplan_api/Dockerfile
+      context: .
+    restart: always
+    tty: true
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./looplan_api:/app
+    depends_on:
+      - mongodb_server
+    command: cargo run
+  mongodb_server:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: looplan_user
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - 27017:27017
+    volumes:
+      - ./db:/data/db
+      - ./looplan
+  client_server:
+    build:
+      dockerfile: ./looplan_client/Dockerfile
+      context: .
+    restart: always
+    tty: true
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./looplan_client:/app
+    command: bash -c "npm install && npm run dev"
+      
